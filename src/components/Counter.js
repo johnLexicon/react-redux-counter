@@ -5,22 +5,40 @@ const Counter = () => {
   const counter = useSelector((state) => state.counter);
   const dispatch = useDispatch();
 
-  const handleIncrement = () => {
-    dispatch({ type: 'INCREMENT' });
+  const handleIncrement = (amount) => {
+    dispatch({ type: 'INCREMENT', amount });
   };
-  const handleDecrement = () => {
-    dispatch({ type: 'DECREMENT' });
+  const handleDecrement = (amount) => {
+    dispatch({ type: 'DECREMENT', amount });
   };
   return (
     <div className="counter-wrapper text-center py-5">
       <div className="h3 text-muted">Redux Counter</div>
       <div className="h2">{counter}</div>
       <div className="counter-btns">
-        <button onClick={handleIncrement} className="btn btn-primary m-2">
-          Increment
+        <button
+          onClick={() => handleIncrement(1)}
+          className="btn btn-primary m-2"
+        >
+          Increment 1
         </button>
-        <button onClick={handleDecrement} className="btn btn-primary m-2">
-          Decrement
+        <button
+          onClick={() => handleIncrement(5)}
+          className="btn btn-primary m-2"
+        >
+          Increment 5
+        </button>
+        <button
+          onClick={() => handleDecrement(1)}
+          className="btn btn-primary m-2"
+        >
+          Decrement 1
+        </button>
+        <button
+          onClick={() => handleDecrement(5)}
+          className="btn btn-primary m-2"
+        >
+          Decrement 5
         </button>
       </div>
       <div className="toggle-wrapper mt-3">
