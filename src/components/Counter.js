@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'; // The useSelector hook 
 // When the component is unmounted redux will automatically clear the subscription.
 const Counter = () => {
   const counter = useSelector((state) => state.counter);
+  const showCounter = useSelector((state) => state.showCounter);
   const dispatch = useDispatch();
 
   const handleIncrement = (amount) => {
@@ -11,10 +12,15 @@ const Counter = () => {
   const handleDecrement = (amount) => {
     dispatch({ type: 'DECREMENT', amount });
   };
+  const handleShowCounter = () => {
+    dispatch({ type: 'TOGGLE_COUNTER', toggleValue: !showCounter });
+  };
   return (
     <div className="counter-wrapper text-center py-5">
       <div className="h3 text-muted">Redux Counter</div>
-      <div className="h2">{counter}</div>
+      <div className={`h2 ${showCounter ? 'd-block' : 'd-none'}`}>
+        {counter}
+      </div>
       <div className="counter-btns">
         <button
           onClick={() => handleIncrement(1)}
@@ -42,7 +48,9 @@ const Counter = () => {
         </button>
       </div>
       <div className="toggle-wrapper mt-3">
-        <button className="btn btn-primary">Toggle Counter</button>
+        <button onClick={handleShowCounter} className="btn btn-primary">
+          Toggle Counter
+        </button>
       </div>
     </div>
   );
