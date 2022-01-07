@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux'; // The useSelector hook creates automatically a subscription
+import { increment, decrement, toggleCounter } from '../actions/counterActions';
 
 // When the component is unmounted redux will automatically clear the subscription.
 const Counter = () => {
@@ -7,13 +8,16 @@ const Counter = () => {
   const dispatch = useDispatch();
 
   const handleIncrement = (amount) => {
-    dispatch({ type: 'INCREMENT', amount });
+    // dispatch({ type: 'INCREMENT', amount });
+    dispatch(increment(amount));
   };
   const handleDecrement = (amount) => {
-    dispatch({ type: 'DECREMENT', amount });
+    // dispatch({ type: 'DECREMENT', amount });
+    dispatch(decrement(amount));
   };
   const handleShowCounter = () => {
-    dispatch({ type: 'TOGGLE_COUNTER', toggleValue: !showCounter });
+    // dispatch({ type: 'TOGGLE_COUNTER', toggleValue: !showCounter });
+    dispatch(toggleCounter(!showCounter));
   };
   return (
     <div className="counter-wrapper text-center py-5">

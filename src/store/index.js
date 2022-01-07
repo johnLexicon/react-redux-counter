@@ -1,19 +1,5 @@
 import { createStore } from 'redux';
-
-// NEVER MUTATE THE EXISTING STATE, ALWAYS RETURN A COPY OF THE STATE!!!
-const counterReducer = (state = { counter: 0, showCounter: true }, action) => {
-  const { type, amount, toggleValue } = action;
-  if (type === 'INCREMENT') {
-    return { ...state, counter: state.counter + amount };
-  }
-  if (type === 'DECREMENT') {
-    return { ...state, counter: state.counter - amount };
-  }
-  if (type === 'TOGGLE_COUNTER') {
-    return { ...state, showCounter: toggleValue };
-  }
-  return state;
-};
+import counterReducer from '../reducers/counterReducer';
 
 const store = createStore(
   counterReducer,
